@@ -1,6 +1,6 @@
-# mnist-3lnn
-A simple 3-layer neural network to recognize handwritten single digit numbers from the MNIST image files.
+# CS251A Advanced Computer Architecture - Winter 2020 at UCLA
 
+The benchmark for this project is a simple 3-layer Neural Network for digit recognition. The benchmark is based on previous work completed on the following repo: https://mmlind.github.io/Simple_3-Layer_Neural_Network_for_MNIST_Handwriting_Recognition/.
 
 ### Compile and run source code
 
@@ -20,10 +20,6 @@ $ ./bin/mnist-3lnn
 
 The  `/doc` folder contains a doxygen configuration file. 
 When you run it with doxygen it will create updated [HTML documentation](https://rawgit.com/mmlind/mnist-3lnn/master/doc/html/index.html) in the `/doc/html` folder.
-
-### Screenshots
-
-The `/screenshots` folder contains screenshots of running the program on my 2010 MacBook Pro.
 
 
 ### MNIST Database
