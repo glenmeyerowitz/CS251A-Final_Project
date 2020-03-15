@@ -273,14 +273,15 @@ void calcNodeOutput(Network *nn, LayerType ltype, int id){
     calcNode->output = calcNode->bias;
 
     Node *prevArr[784];
-    for(int i = 0; i < prevLayer->ncount; i++)
+    int i;
+    for(i = 0; i < prevLayer->ncount; i++)
     {
         prevArr[i] = (Node*)sbptr;
         sbptr += prevLayerNodeSize;
     }
 
     int block_size = 16;
-    int i = 0;    
+    i = 0;    
 
     //set block size depending on layer
     if(prevLayer->ncount < 50)
@@ -290,7 +291,8 @@ void calcNodeOutput(Network *nn, LayerType ltype, int id){
 
     for (i=0; i<prevLayer->ncount;i+=block_size){
         // block multiply kernel:
-        for(int j = i; j < block_size+i; j++)
+        int j;
+        for(j = i; j < block_size+i; j++)
         {
             calcNode->output += prevArr[j]->output * calcNode->weights[j];
         }
