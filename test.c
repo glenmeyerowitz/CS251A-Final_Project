@@ -48,10 +48,8 @@ Vector *getVectorFromImage(MNIST_Image *img){
  * @param nn A pointer to the NN
  */
 
-void testNetwork(Network *nn){
-   
-    int NUM_TEST_IMAGES = 100;
- 
+void testNetwork(Network *nn, int NUM_TEST_IMAGES){
+
     // open MNIST files
     FILE *imageFile, *labelFile;
     imageFile = openMNISTImageFile(MNIST_TESTING_SET_IMAGE_FILE_NAME);
@@ -96,6 +94,7 @@ void testNetwork(Network *nn){
 
 int main(int argc, const char * argv[]) {
     
+    int NUM_TEST_IMAGES = 10;
     int hidCount = 20;
     int outCount = 10;
 
@@ -110,7 +109,7 @@ int main(int argc, const char * argv[]) {
     loadNetworkWeights(nn);
 
     // Testing the during training derived network using the TESTING dataset
-    testNetwork(nn);
+    testNetwork(nn, NUM_TEST_IMAGES);
 
     // Free the manually allocated memory for this network
     free(nn);
