@@ -251,7 +251,7 @@ void activateNode(Network *nn, LayerType ltype, int id){
  */
 
 void calcNodeOutput(Network *nn, LayerType ltype, int id){
-    
+
     Layer *calcLayer = getLayer(nn, ltype);
     Node *calcNode = getNode(calcLayer, id);
     
@@ -268,15 +268,56 @@ void calcNodeOutput(Network *nn, LayerType ltype, int id){
     }
     
     uint8_t *sbptr = (uint8_t*) prevLayer->nodes;
+    uint8_t *sbptr_i = (uint8_t*) prevLayer->nodes;
     
     // Start by adding the bias
     calcNode->output = calcNode->bias;
 
-    int i;    
-    for (i=0; i<prevLayer->ncount;i++){
-        Node *prevLayerNode = (Node*)sbptr;
-        calcNode->output += prevLayerNode->output * calcNode->weights[i];
+    printf("prevlayer ncount: %d\n", prevLayer->ncount);
+
+    Node *prevArr[784];
+    for(int i = 0; i < prevLayer->ncount; i++)
+    {
+        prevArr[i] = (Node*)sbptr;
         sbptr += prevLayerNodeSize;
+    }
+
+    int block_size = 16;
+    int i = 0;    
+    if(prevLayer->ncount < 50)
+    {
+        block_size = 20;
+    }
+
+    for (i=0; i<prevLayer->ncount;i+=block_size){
+        
+        /*
+        if(i % 500 == 0 || (prevLayer->ncount < 50 && i %10))
+        {
+            //printf("prevlayer ncount: %d\n", prevLayer->ncount);
+            printf("prevlayer output: %f\n", prevLayerNode->output);
+            //printf("calcNode output: %f\n", calcNode->output);
+            //printf("calcNode weights: %f\n", calcNode->weights[i]);
+            printf("prevarr output: %f\n", prevArr[i]->output);
+        }
+        */
+        
+        // block multiply kernel:
+        for(int j = i; j < block_size+i; j++)
+        {
+            calcNode->output += prevArr[j]->output * calcNode->weights[j];
+        }
+        
+
+        //printf("curr i: %d\n", i);
+        /*
+        for(int j = i; j < block_size+i; j++)
+        {
+            Node *prevLayerNode = (Node*)sbptr_i;
+            calcNode->output += prevLayerNode->output * calcNode->weights[j];
+            sbptr_i += prevLayerNodeSize;
+        }
+        */
     }
 
 }
@@ -297,12 +338,24 @@ void calcLayer(Network *nn, LayerType ltype){
     int i;
     for (i=0;i<l->ncount;i++){
         calcNodeOutput(nn, ltype, i);
+        //printf("LCOUNT::: %d\n", l->ncount);
         activateNode(nn,ltype,i);
     }
 }
+/*
+void kernel()
+{
+    for(int i = 0; i < 20; i++)
+    {
+        for(int j = 0; j < 784; j++)
+        {
+            calcNode[i] += prevLayerNode[i] * calcNode[i][j];
+        }
+    }
 
+}
 
-
+*/
 
 /**
  * @brief Feeds input layer values forward to hidden to output layer (calculation and activation fct)
