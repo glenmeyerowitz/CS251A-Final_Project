@@ -602,7 +602,7 @@ int getNetworkClassification(Network *nn){
 
 void saveNetworkWeights(Network *nn){
     FILE *outputFile;
-    outputFile = fopen("network.dat", "w");
+    outputFile = fopen("/home/gmeyerowitz/CS251A-Final_Project/network.dat", "w");
 
     Layer *inputLayer = getLayer(nn, INPUT);
     Layer *hiddenLayer = getLayer(nn, HIDDEN);
@@ -655,7 +655,7 @@ void saveNetworkWeights(Network *nn){
 
 void loadNetworkWeights(Network *nn){
     FILE *inputFile;
-    inputFile = fopen("network.dat", "r");
+    inputFile = fopen("/home/gmeyerowitz/CS251A-Final_Project/network.dat", "r");
     char str[60];
 
     Layer *inputLayer = getLayer(nn, INPUT);
