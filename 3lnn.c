@@ -320,24 +320,7 @@ void calcLayer(Network *nn, LayerType ltype){
         activateNode(nn,ltype,i);
     }
 }
-/*
-void kernel()
-{
-    for(int i = 0; i < 20; i++)
-    {
-        for(int j = 0; j < 784; j++)
-        {
-            calcNode[i] += prevLayerNode[i] * calcNode[i][j];
-        }
-    }
 
-}
-
-<<<<<<< HEAD
-=======
-*/
-
->>>>>>> 50ee527c8e4661cfbb277b7fad099e803d54211e
 /**
  * @brief Feeds input layer values forward to hidden to output layer (calculation and activation fct)
  * @param nn A pointer to the NN
