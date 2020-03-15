@@ -268,11 +268,11 @@ void calcNodeOutput(Network *nn, LayerType ltype, int id){
     }
     
     uint8_t *sbptr = (uint8_t*) prevLayer->nodes;
+    uint8_t *sbptr_i = (uint8_t*) prevLayer->nodes;
     
     // Start by adding the bias
     calcNode->output = calcNode->bias;
 
-    //populate preious array values
     Node *prevArr[784];
     for(int i = 0; i < prevLayer->ncount; i++)
     {
@@ -290,7 +290,6 @@ void calcNodeOutput(Network *nn, LayerType ltype, int id){
     }
 
     for (i=0; i<prevLayer->ncount;i+=block_size){
-
         // block multiply kernel:
         for(int j = i; j < block_size+i; j++)
         {
@@ -317,11 +316,28 @@ void calcLayer(Network *nn, LayerType ltype){
     int i;
     for (i=0;i<l->ncount;i++){
         calcNodeOutput(nn, ltype, i);
+        //printf("LCOUNT::: %d\n", l->ncount);
         activateNode(nn,ltype,i);
     }
 }
+/*
+void kernel()
+{
+    for(int i = 0; i < 20; i++)
+    {
+        for(int j = 0; j < 784; j++)
+        {
+            calcNode[i] += prevLayerNode[i] * calcNode[i][j];
+        }
+    }
 
+}
 
+<<<<<<< HEAD
+=======
+*/
+
+>>>>>>> 50ee527c8e4661cfbb277b7fad099e803d54211e
 /**
  * @brief Feeds input layer values forward to hidden to output layer (calculation and activation fct)
  * @param nn A pointer to the NN
