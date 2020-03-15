@@ -251,7 +251,7 @@ void activateNode(Network *nn, LayerType ltype, int id){
  */
 
 void calcNodeOutput(Network *nn, LayerType ltype, int id){
-    
+
     Layer *calcLayer = getLayer(nn, ltype);
     Node *calcNode = getNode(calcLayer, id);
     
@@ -272,11 +272,31 @@ void calcNodeOutput(Network *nn, LayerType ltype, int id){
     // Start by adding the bias
     calcNode->output = calcNode->bias;
 
-    int i;    
-    for (i=0; i<prevLayer->ncount;i++){
-        Node *prevLayerNode = (Node*)sbptr;
-        calcNode->output += prevLayerNode->output * calcNode->weights[i];
+    //populate preious array values
+    Node *prevArr[784];
+    for(int i = 0; i < prevLayer->ncount; i++)
+    {
+        prevArr[i] = (Node*)sbptr;
         sbptr += prevLayerNodeSize;
+    }
+
+    int block_size = 16;
+    int i = 0;    
+
+    //set block size depending on layer
+    if(prevLayer->ncount < 50)
+    {
+        block_size = 20;
+    }
+
+    for (i=0; i<prevLayer->ncount;i+=block_size){
+
+        // block multiply kernel:
+        for(int j = i; j < block_size+i; j++)
+        {
+            calcNode->output += prevArr[j]->output * calcNode->weights[j];
+        }
+        
     }
 
 }
@@ -300,8 +320,6 @@ void calcLayer(Network *nn, LayerType ltype){
         activateNode(nn,ltype,i);
     }
 }
-
-
 
 
 /**
