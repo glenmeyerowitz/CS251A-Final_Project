@@ -268,7 +268,6 @@ void calcNodeOutput(Network *nn, LayerType ltype, int id){
     }
     
     uint8_t *sbptr = (uint8_t*) prevLayer->nodes;
-    uint8_t *sbptr_i = (uint8_t*) prevLayer->nodes;
     
     // Start by adding the bias
     calcNode->output = calcNode->bias;
