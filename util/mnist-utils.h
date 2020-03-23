@@ -13,8 +13,13 @@
 #define MNIST_TRAINING_SET_IMAGE_FILE_NAME "/home/cian/CS251A-Final_Project/data/train-images-idx3-ubyte" ///< MNIST image training file in the data folder
 #define MNIST_TRAINING_SET_LABEL_FILE_NAME "/home/cian/CS251A-Final_Project/data/train-labels-idx1-ubyte" ///< MNIST label training file in the data folder
 
+<<<<<<< HEAD
 #define MNIST_TESTING_SET_IMAGE_FILE_NAME "/home/cian/CS251A-Final_Project/data/t10k-images-idx3-ubyte"  ///< MNIST image testing file in the data folder
 #define MNIST_TESTING_SET_LABEL_FILE_NAME "/home/cian/CS251A-Final_Project/data/t10k-labels-idx1-ubyte"  ///< MNIST label testing file in the data folder
+=======
+#define MNIST_TESTING_SET_IMAGE_FILE_NAME "/home/gmeyerowitz/CS251A-Final_Project/data/t10k-images-idx3-ubyte"  ///< MNIST image testing file in the data folder
+#define MNIST_TESTING_SET_LABEL_FILE_NAME "/home/gmeyerowitz/CS251A-Final_Project/data/t10k-labels-idx1-ubyte"  ///< MNIST label testing file in the data folder
+>>>>>>> d0043b875cc9953c8664483e35aa17dbb1722f71
 
 
 
