@@ -297,15 +297,17 @@ void calcNodeOutput(Network *nn, LayerType ltype, int id){
         {
 	  
 	  float dst = 0.0;
+	  /*
 	  float ret = 0.0;
 	  float src = calcNode->output;
 	  float in1 = prevArr[j]->output;
-	  float in2 = calcNode->weights[j];
+	  float in2 = calcNode->weights[j];*/
 
+	  float src = calcNode->output;
 	  asm ("fld %1" : "=g" (dst) : "g" (src));
-	  asm ("fdivr %2, %0" : "=&t" (ret) : "%0" (in1), "u" (in2));
+	  asm ("fdivr %2, %0" : "=&t" (calcNode->output) : "%0" (prevArr[j]->output), "u" (calcNode->weights[j]));
             
-	  calcNode->output = ret;
+	  //calcNode->output = ret;
 	  
 	  //calcNode->output += prevArr[j]->output * calcNode->weights[j];
         }
@@ -615,11 +617,8 @@ int getNetworkClassification(Network *nn){
 
 void saveNetworkWeights(Network *nn){
     FILE *outputFile;
-<<<<<<< HEAD
+
     outputFile = fopen("/home/cian/CS251A-Final_Project/network.dat", "w");
-=======
-    outputFile = fopen("/home/gmeyerowitz/CS251A-Final_Project/network.dat", "w");
->>>>>>> d0043b875cc9953c8664483e35aa17dbb1722f71
 
     Layer *inputLayer = getLayer(nn, INPUT);
     Layer *hiddenLayer = getLayer(nn, HIDDEN);
@@ -672,11 +671,8 @@ void saveNetworkWeights(Network *nn){
 
 void loadNetworkWeights(Network *nn){
     FILE *inputFile;
-<<<<<<< HEAD
+
     inputFile = fopen("/home/cian/CS251A-Final_Project/network.dat", "r");
-=======
-    inputFile = fopen("/home/gmeyerowitz/CS251A-Final_Project/network.dat", "r");
->>>>>>> d0043b875cc9953c8664483e35aa17dbb1722f71
     char str[60];
 
     Layer *inputLayer = getLayer(nn, INPUT);

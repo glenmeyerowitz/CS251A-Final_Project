@@ -94,7 +94,7 @@ void testNetwork(Network *nn, int NUM_TEST_IMAGES){
 
 int main(int argc, const char * argv[]) {
     
-    int NUM_TEST_IMAGES = 10;
+    int NUM_TEST_IMAGES = 100;
     int hidCount = 20;
     int outCount = 10;
 
