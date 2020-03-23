@@ -1,0 +1,291 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+100.02      0.02     0.02     3000     0.01     0.01  calcNodeOutput
+  0.00      0.02     0.00     9305     0.00     0.00  getLayer
+  0.00      0.02     0.00     7814     0.00     0.00  getNode
+  0.00      0.02     0.00     3000     0.00     0.00  activateNode
+  0.00      0.02     0.00      200     0.00     0.10  calcLayer
+  0.00      0.02     0.00      100     0.00     0.00  displayTestingProgress
+  0.00      0.02     0.00      100     0.00     0.20  feedForwardNetwork
+  0.00      0.02     0.00      100     0.00     0.00  feedInput
+  0.00      0.02     0.00      100     0.00     0.00  getImage
+  0.00      0.02     0.00      100     0.00     0.00  getLabel
+  0.00      0.02     0.00      100     0.00     0.00  getNetworkClassification
+  0.00      0.02     0.00      100     0.00     0.00  getVectorFromImage
+  0.00      0.02     0.00        6     0.00     0.00  flipBytes
+  0.00      0.02     0.00        2     0.00     0.00  createLayer
+  0.00      0.02     0.00        2     0.00     0.00  initWeights
+  0.00      0.02     0.00        1     0.00     0.00  createInputLayer
+  0.00      0.02     0.00        1     0.00     0.00  createNetwork
+  0.00      0.02     0.00        1     0.00     0.00  initNetwork
+  0.00      0.02     0.00        1     0.00     0.00  loadNetworkWeights
+  0.00      0.02     0.00        1     0.00     0.00  openMNISTImageFile
+  0.00      0.02     0.00        1     0.00     0.00  openMNISTLabelFile
+  0.00      0.02     0.00        1     0.00     0.00  readImageFileHeader
+  0.00      0.02     0.00        1     0.00     0.00  readLabelFileHeader
+  0.00      0.02     0.00        1     0.00     0.00  setNetworkDefaults
+  0.00      0.02     0.00        1     0.00    20.00  testNetwork
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+Copyright (C) 2012-2016 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 2 byte(s) for 49.99% of 0.02 seconds
+
+index % time    self  children    called     name
+                0.02    0.00    3000/3000        calcLayer [2]
+[1]    100.0    0.02    0.00    3000         calcNodeOutput [1]
+                0.00    0.00    6000/9305        getLayer [6]
+                0.00    0.00    3000/7814        getNode [7]
+-----------------------------------------------
+                0.00    0.02     200/200         feedForwardNetwork [3]
+[2]    100.0    0.00    0.02     200         calcLayer [2]
+                0.02    0.00    3000/3000        calcNodeOutput [1]
+                0.00    0.00    3000/3000        activateNode [8]
+                0.00    0.00     200/9305        getLayer [6]
+-----------------------------------------------
+                0.00    0.02     100/100         testNetwork [4]
+[3]    100.0    0.00    0.02     100         feedForwardNetwork [3]
+                0.00    0.02     200/200         calcLayer [2]
+-----------------------------------------------
+                0.00    0.02       1/1           main [5]
+[4]    100.0    0.00    0.02       1         testNetwork [4]
+                0.00    0.02     100/100         feedForwardNetwork [3]
+                0.00    0.00     100/100         getImage [11]
+                0.00    0.00     100/100         getLabel [12]
+                0.00    0.00     100/100         getVectorFromImage [14]
+                0.00    0.00     100/100         feedInput [10]
+                0.00    0.00     100/100         getNetworkClassification [13]
+                0.00    0.00     100/100         displayTestingProgress [9]
+                0.00    0.00       1/1           openMNISTImageFile [22]
+                0.00    0.00       1/1           openMNISTLabelFile [23]
+-----------------------------------------------
+                                                 <spontaneous>
+[5]    100.0    0.00    0.02                 main [5]
+                0.00    0.02       1/1           testNetwork [4]
+                0.00    0.00       1/1           createNetwork [19]
+                0.00    0.00       1/1           loadNetworkWeights [21]
+-----------------------------------------------
+                0.00    0.00       2/9305        initWeights [17]
+                0.00    0.00       3/9305        loadNetworkWeights [21]
+                0.00    0.00     100/9305        getNetworkClassification [13]
+                0.00    0.00     200/9305        calcLayer [2]
+                0.00    0.00    3000/9305        activateNode [8]
+                0.00    0.00    6000/9305        calcNodeOutput [1]
+[6]      0.0    0.00    0.00    9305         getLayer [6]
+-----------------------------------------------
+                0.00    0.00     814/7814        loadNetworkWeights [21]
+                0.00    0.00    1000/7814        getNetworkClassification [13]
+                0.00    0.00    3000/7814        activateNode [8]
+                0.00    0.00    3000/7814        calcNodeOutput [1]
+[7]      0.0    0.00    0.00    7814         getNode [7]
+-----------------------------------------------
+                0.00    0.00    3000/3000        calcLayer [2]
+[8]      0.0    0.00    0.00    3000         activateNode [8]
+                0.00    0.00    3000/9305        getLayer [6]
+                0.00    0.00    3000/7814        getNode [7]
+-----------------------------------------------
+                0.00    0.00     100/100         testNetwork [4]
+[9]      0.0    0.00    0.00     100         displayTestingProgress [9]
+-----------------------------------------------
+                0.00    0.00     100/100         testNetwork [4]
+[10]     0.0    0.00    0.00     100         feedInput [10]
+-----------------------------------------------
+                0.00    0.00     100/100         testNetwork [4]
+[11]     0.0    0.00    0.00     100         getImage [11]
+-----------------------------------------------
+                0.00    0.00     100/100         testNetwork [4]
+[12]     0.0    0.00    0.00     100         getLabel [12]
+-----------------------------------------------
+                0.00    0.00     100/100         testNetwork [4]
+[13]     0.0    0.00    0.00     100         getNetworkClassification [13]
+                0.00    0.00    1000/7814        getNode [7]
+                0.00    0.00     100/9305        getLayer [6]
+-----------------------------------------------
+                0.00    0.00     100/100         testNetwork [4]
+[14]     0.0    0.00    0.00     100         getVectorFromImage [14]
+-----------------------------------------------
+                0.00    0.00       2/6           readLabelFileHeader [25]
+                0.00    0.00       4/6           readImageFileHeader [24]
+[15]     0.0    0.00    0.00       6         flipBytes [15]
+-----------------------------------------------
+                0.00    0.00       2/2           initNetwork [20]
+[16]     0.0    0.00    0.00       2         createLayer [16]
+-----------------------------------------------
+                0.00    0.00       2/2           createNetwork [19]
+[17]     0.0    0.00    0.00       2         initWeights [17]
+                0.00    0.00       2/9305        getLayer [6]
+-----------------------------------------------
+                0.00    0.00       1/1           initNetwork [20]
+[18]     0.0    0.00    0.00       1         createInputLayer [18]
+-----------------------------------------------
+                0.00    0.00       1/1           main [5]
+[19]     0.0    0.00    0.00       1         createNetwork [19]
+                0.00    0.00       2/2           initWeights [17]
+                0.00    0.00       1/1           initNetwork [20]
+                0.00    0.00       1/1           setNetworkDefaults [26]
+-----------------------------------------------
+                0.00    0.00       1/1           createNetwork [19]
+[20]     0.0    0.00    0.00       1         initNetwork [20]
+                0.00    0.00       2/2           createLayer [16]
+                0.00    0.00       1/1           createInputLayer [18]
+-----------------------------------------------
+                0.00    0.00       1/1           main [5]
+[21]     0.0    0.00    0.00       1         loadNetworkWeights [21]
+                0.00    0.00     814/7814        getNode [7]
+                0.00    0.00       3/9305        getLayer [6]
+-----------------------------------------------
+                0.00    0.00       1/1           testNetwork [4]
+[22]     0.0    0.00    0.00       1         openMNISTImageFile [22]
+                0.00    0.00       1/1           readImageFileHeader [24]
+-----------------------------------------------
+                0.00    0.00       1/1           testNetwork [4]
+[23]     0.0    0.00    0.00       1         openMNISTLabelFile [23]
+                0.00    0.00       1/1           readLabelFileHeader [25]
+-----------------------------------------------
+                0.00    0.00       1/1           openMNISTImageFile [22]
+[24]     0.0    0.00    0.00       1         readImageFileHeader [24]
+                0.00    0.00       4/6           flipBytes [15]
+-----------------------------------------------
+                0.00    0.00       1/1           openMNISTLabelFile [23]
+[25]     0.0    0.00    0.00       1         readLabelFileHeader [25]
+                0.00    0.00       2/6           flipBytes [15]
+-----------------------------------------------
+                0.00    0.00       1/1           createNetwork [19]
+[26]     0.0    0.00    0.00       1         setNetworkDefaults [26]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function is in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+Copyright (C) 2012-2016 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+Index by function name
+
+   [8] activateNode           [15] flipBytes              [21] loadNetworkWeights
+   [2] calcLayer              [11] getImage               [22] openMNISTImageFile
+   [1] calcNodeOutput         [12] getLabel               [23] openMNISTLabelFile
+  [18] createInputLayer        [6] getLayer               [24] readImageFileHeader
+  [16] createLayer            [13] getNetworkClassification [25] readLabelFileHeader
+  [19] createNetwork           [7] getNode                [26] setNetworkDefaults
+   [9] displayTestingProgress [14] getVectorFromImage      [4] testNetwork
+   [3] feedForwardNetwork     [20] initNetwork
+  [10] feedInput              [17] initWeights

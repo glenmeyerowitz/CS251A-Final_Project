@@ -147,7 +147,7 @@ void testNetwork(Network *nn){
 
 void saveNetwork(Network *nn){
     FILE *outputFile;
-    outputFile = fopen("network.dat", "w");
+    outputFile = fopen("/home/cian/CS251A-Final_Project/network.dat", "w");
     fwrite (&nn, sizeof(nn), 1, outputFile);
     fclose(outputFile);
 }

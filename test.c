@@ -107,10 +107,17 @@ int main(int argc, const char * argv[]) {
     
     // Create neural network using a manually allocated memory space
     Network *nn = createNetwork(MNIST_IMG_HEIGHT*MNIST_IMG_WIDTH, hidCount, outCount);
+
+    //printf("after create network\n");
+
     loadNetworkWeights(nn);
+
+    //intf("after load network weights\n");
 
     // Testing the during training derived network using the TESTING dataset
     testNetwork(nn);
+
+    //    printf("after test network\n");
 
     // Free the manually allocated memory for this network
     free(nn);

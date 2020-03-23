@@ -251,7 +251,7 @@ void activateNode(Network *nn, LayerType ltype, int id){
  */
 
 void calcNodeOutput(Network *nn, LayerType ltype, int id){
-    
+
     Layer *calcLayer = getLayer(nn, ltype);
     Node *calcNode = getNode(calcLayer, id);
     
@@ -272,11 +272,43 @@ void calcNodeOutput(Network *nn, LayerType ltype, int id){
     // Start by adding the bias
     calcNode->output = calcNode->bias;
 
-    int i;    
-    for (i=0; i<prevLayer->ncount;i++){
-        Node *prevLayerNode = (Node*)sbptr;
-        calcNode->output += prevLayerNode->output * calcNode->weights[i];
+    Node *prevArr[784];
+    int l = 0;
+    for(l = 0; l < prevLayer->ncount; l++)
+    {
+        prevArr[l] = (Node*)sbptr;
         sbptr += prevLayerNodeSize;
+    }
+
+    int block_size = 16;
+    int i = 0;    
+
+    //set block size depending on layer
+    if(prevLayer->ncount < 50)
+    {
+        block_size = 20;
+    }
+
+    for (i=0; i<prevLayer->ncount;i+=block_size){
+        // block multiply kernel:
+        int j = 0;
+        for(j = i; j < block_size+i; j++)
+        {
+	  
+	  float dst = 0.0;
+	  float ret = 0.0;
+	  float src = calcNode->output;
+	  float in1 = prevArr[j]->output;
+	  float in2 = calcNode->weights[j];
+
+	  asm ("fld %1" : "=g" (dst) : "g" (src));
+	  asm ("fdivr %2, %0" : "=&t" (ret) : "%0" (in1), "u" (in2));
+            
+	  calcNode->output = ret;
+	  
+	  //calcNode->output += prevArr[j]->output * calcNode->weights[j];
+        }
+        
     }
 
 }
@@ -297,12 +329,10 @@ void calcLayer(Network *nn, LayerType ltype){
     int i;
     for (i=0;i<l->ncount;i++){
         calcNodeOutput(nn, ltype, i);
+        //printf("LCOUNT::: %d\n", l->ncount);
         activateNode(nn,ltype,i);
     }
 }
-
-
-
 
 /**
  * @brief Feeds input layer values forward to hidden to output layer (calculation and activation fct)
@@ -584,7 +614,7 @@ int getNetworkClassification(Network *nn){
 
 void saveNetworkWeights(Network *nn){
     FILE *outputFile;
-    outputFile = fopen("network.dat", "w");
+    outputFile = fopen("/home/cian/CS251A-Final_Project/network.dat", "w");
 
     Layer *inputLayer = getLayer(nn, INPUT);
     Layer *hiddenLayer = getLayer(nn, HIDDEN);
@@ -637,7 +667,7 @@ void saveNetworkWeights(Network *nn){
 
 void loadNetworkWeights(Network *nn){
     FILE *inputFile;
-    inputFile = fopen("network.dat", "r");
+    inputFile = fopen("/home/cian/CS251A-Final_Project/network.dat", "r");
     char str[60];
 
     Layer *inputLayer = getLayer(nn, INPUT);
