@@ -2,6 +2,10 @@
 
 The benchmark for this project is a simple 3-layer Neural Network for digit recognition. The benchmark is based on previous work completed on the following repo: https://mmlind.github.io/Simple_3-Layer_Neural_Network_for_MNIST_Handwriting_Recognition/.
 
+### Description of Files
+
+The "mod_gem5_files" folder shows the updates that were made in gem5 to allow for the fmad instruction to work. The "stats" folder has the gem5 output statistics for the different versions of the neural network. The "prof" files show the profiling results before and after the matrix multiplication tiling. 
+
 ### Compile and run source code
 
 The repository comes with a pre-configured `makefile`. You can compile the source simply by typing
